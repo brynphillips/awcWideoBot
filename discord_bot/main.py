@@ -64,7 +64,6 @@ async def explains(ctx):
     quiet = not args.verbose
 
     with open(args.config) as f:
-        config = Config(**json.load(f))
         await chat_message_test(config,ctx.message.content)
         sys.stdout = stdout
         s.seek(0)
