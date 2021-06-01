@@ -7,9 +7,6 @@ import sys
 from io import StringIO
 
 import discord
-subprocess.call(('ls', '-al'))
-sys.path.insert(0, 'twitch-chat-bot')
-
 from bot.main import chat_message_test
 from bot.main import Config
 from discord.ext import commands
