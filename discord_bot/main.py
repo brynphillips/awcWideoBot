@@ -1,4 +1,5 @@
 import argparse
+import json
 import os
 import re
 import sys
@@ -11,24 +12,6 @@ from discord.ext import commands
 
 client = commands.Bot(command_prefix='!')
 token = os.getenv('DISCORD_BOT_TOKEN')
-config = Config(
-    '...',
-    '...',
-    '...',
-    '...',
-    os.environ['youtube_api_key'],
-    {
-        'youtube_playlists':
-        {
-            'explains':
-                'PLWBKAf81pmOaP9naRiNAqug6EBnkPakvY',
-                'https://github.com/anthonywritescode/explains'
-            'faq':
-                'PLWBKAf81pmOZEPeIV2_pIESK5hRMAo1hR',
-        },
-    },
-    '...',
-)
 
 
 @client.event
@@ -67,6 +50,7 @@ async def explains(ctx):
     stdout = sys.stdout
     s = StringIO()
     sys.stdout = s
+    config = Config(**json.loads(os.environ['CONFIG']))
 
     with open(args.config) as f:
         await chat_message_test(config, ctx.message.content)
