@@ -8,8 +8,8 @@ from io import StringIO
 import discord
 from discord.ext import commands
 
-from .bot.main import chat_message_test
-from .bot.main import Config
+from ..bot.main import chat_message_test
+from ..bot.main import Config
 
 client = commands.Bot(command_prefix='!')
 token = os.getenv('DISCORD_BOT_TOKEN')
