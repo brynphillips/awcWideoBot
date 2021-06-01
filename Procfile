@@ -1,1 +1,1 @@
-worker: python -m discord_bot/main
+worker: python -m discord_bot.main
