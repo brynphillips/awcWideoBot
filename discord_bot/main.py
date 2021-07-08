@@ -15,7 +15,6 @@ from discord.ext import commands
 client = commands.Bot(command_prefix='!')
 token = os.getenv('DISCORD_BOT_TOKEN')
 
-
 @client.event
 async def on_ready():
     await client.change_presence(
@@ -52,9 +51,9 @@ async def explains(ctx):
     stdout = sys.stdout
     s = StringIO()
     sys.stdout = s
-    config = Config(**json.loads(os.environ['CONFIG']))
 
     with open(args.config) as f:
+        config = Config(**json.loads(f.read()))
         await chat_message_test(config, ctx.message.content)
         sys.stdout = stdout
         s.seek(0)
