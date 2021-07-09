@@ -21,7 +21,7 @@ token = os.getenv('DISCORD_BOT_TOKEN')
 async def on_ready():
     await client.change_presence(
         status=discord.Status.idle,
-        activity=discord.Game('Listening to .help'),
+        activity=discord.Game('Listening to !explains'),
     )
     print('Bot is ready.')
 
@@ -36,9 +36,9 @@ async def whoami(ctx):
     await ctx.send(f'You are {ctx.message.author.name}')
 
 
-@client.command()
-async def clear(ctx, amount=3):
-    await ctx.channel.purge(limit=amount)
+# @client.command()
+# async def clear(ctx, amount=3):
+#     await ctx.channel.purge(limit=amount)
 
 
 @client.command(name='explains')
