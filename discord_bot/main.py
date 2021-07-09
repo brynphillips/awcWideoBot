@@ -54,7 +54,7 @@ async def explains(ctx):
     s = StringIO()
     sys.stdout = s
 
-    config = Config(**json.loads(os.getenv['CONFIG']))
+    config = Config(**json.loads(os.getenv('CONFIG')))
     await chat_message_test(config, ctx.message.content)
     sys.stdout = stdout
     s.seek(0)
