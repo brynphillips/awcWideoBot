@@ -36,11 +36,6 @@ async def whoami(ctx):
     await ctx.send(f'You are {ctx.message.author.name}')
 
 
-# @client.command()
-# async def clear(ctx, amount=3):
-#     await ctx.channel.purge(limit=amount)
-
-
 @client.command(name='explains')
 async def explains(ctx):
     # parser = argparse.ArgumentParser()
