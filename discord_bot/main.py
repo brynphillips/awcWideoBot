@@ -1,8 +1,9 @@
+from __future__ import annotations
+
 import argparse
 import json
 import os
 import re
-import subprocess
 import sys
 from io import StringIO
 
@@ -14,6 +15,7 @@ from discord.ext import commands
 
 client = commands.Bot(command_prefix='!')
 token = os.getenv('DISCORD_BOT_TOKEN')
+
 
 @client.event
 async def on_ready():
