@@ -8,6 +8,6 @@ multidict==5.1.0
 typing-extensions==3.7.4.3
 yarl==1.6.3
 
-aync-lru==1.0.2
+async-lru==1.0.2
 humanize==3.10.0
 aiosqlite==0.17.0
