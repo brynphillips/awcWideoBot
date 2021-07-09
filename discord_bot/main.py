@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import argparse
 import json
 import os
 import re
@@ -11,6 +10,7 @@ import discord
 from bot.main import chat_message_test
 from bot.main import Config
 from discord.ext import commands
+# import argparse
 
 
 client = commands.Bot(command_prefix='!')
@@ -43,24 +43,22 @@ async def clear(ctx, amount=3):
 
 @client.command(name='explains')
 async def explains(ctx):
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--config', default='config.json')
-    parser.add_argument('--verbose', action='store_true')
+    # parser = argparse.ArgumentParser()
+    # parser.add_argument('--config', default='config.json')
+    # parser.add_argument('--verbose', action='store_true')
     # parser.add_argument('--images', action='store_true')
     # parser.add_argument('--test')
-    args = parser.parse_args()
+    # args = parser.parse_args()
 
     stdout = sys.stdout
     s = StringIO()
     sys.stdout = s
 
-    with open(args) as f:
-        config = Config(**json.loads(os.getenv['CONFIG']))
-        await chat_message_test(config, ctx.message.content)
-        sys.stdout = stdout
-        s.seek(0)
-        readout = s.read()
-        f.close()
+    config = Config(**json.loads(os.getenv['CONFIG']))
+    await chat_message_test(config, ctx.message.content)
+    sys.stdout = stdout
+    s.seek(0)
+    readout = s.read()
 
     answer = re.sub(r'\[[^)]*\]\<[^)]*\>', '', readout)
     await ctx.send(f'{ctx.message.author.mention}, here you go: {answer}')
