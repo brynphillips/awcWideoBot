@@ -10,7 +10,6 @@ import discord
 from bot.main import chat_message_test
 from bot.main import Config
 from discord.ext import commands
-# import argparse
 
 
 client = commands.Bot(command_prefix='!')
@@ -38,13 +37,6 @@ async def whoami(ctx):
 
 @client.command(name='explains')
 async def explains(ctx):
-    # parser = argparse.ArgumentParser()
-    # parser.add_argument('--config', default='config.json')
-    # parser.add_argument('--verbose', action='store_true')
-    # parser.add_argument('--images', action='store_true')
-    # parser.add_argument('--test')
-    # args = parser.parse_args()
-
     stdout = sys.stdout
     s = StringIO()
     sys.stdout = s
