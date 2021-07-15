@@ -3,12 +3,10 @@ from __future__ import annotations
 import json
 import os
 import re
-import sys
-from io import StringIO
 
 import discord
-from bot.main import chat_message_test
 from bot.main import Config
+from bot.main import get_printed_input
 from discord.ext import commands
 
 
@@ -37,17 +35,21 @@ async def whoami(ctx):
 
 @client.command(name='explains')
 async def explains(ctx):
-    stdout = sys.stdout
-    s = StringIO()
-    sys.stdout = s
-
+    #     stdout = sys.stdout
+    #     s = StringIO()
+    #     sys.stdout = s
+    #
+    #     config = Config(**json.loads(os.getenv('CONFIG')))
+    #     await chat_message_test(config, ctx.message.content)
+    #     sys.stdout = stdout
+    #     s.seek(0)
+    #     readout = s.read()
     config = Config(**json.loads(os.getenv('CONFIG')))
-    await chat_message_test(config, ctx.message.content)
-    sys.stdout = stdout
-    s.seek(0)
-    readout = s.read()
+    line = ctx.message.content
 
-    answer = re.sub(r'\[[^)]*\]\<[^)]*\>', '', readout)
+    input_returned = await get_printed_input(config, line, images=False)
+
+    answer = re.sub(r'\[[^)]*\]\<[^)]*\>', '', input_returned)
     await ctx.send(f'{ctx.message.author.mention}, here you go: {answer}')
 
 
