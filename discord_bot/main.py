@@ -6,7 +6,7 @@ import re
 
 import discord
 from bot.main import Config
-from bot.main import get_printed_input
+from bot.plugins.youtube_playlist_search import _msg
 from discord.ext import commands
 
 
@@ -35,22 +35,17 @@ async def whoami(ctx):
 
 @client.command(name='explains')
 async def explains(ctx):
-    #     stdout = sys.stdout
-    #     s = StringIO()
-    #     sys.stdout = s
-    #
-    #     config = Config(**json.loads(os.getenv('CONFIG')))
-    #     await chat_message_test(config, ctx.message.content)
-    #     sys.stdout = stdout
-    #     s.seek(0)
-    #     readout = s.read()
+    # config for heroku
     config = Config(**json.loads(os.getenv('CONFIG')))
-    line = ctx.message.content
 
-    input_returned = await get_printed_input(config, line, images=False)
+    # config for local
+    # with open('config.json') as f:
+    #     config = Config(**json.load(f))
 
-    answer = re.sub(r'\[[^)]*\]\<[^)]*\>', '', input_returned)
-    await ctx.send(f'{ctx.message.author.mention}, here you go: {answer}')
+    line = str(ctx.message.content)
+    search_term = re.sub('!explains', '', line)
+    get_msg = await _msg(config, 'explains', search_term)
+    await ctx.send(f'{ctx.message.author.mention}, here you go: {get_msg}')
 
 
 client.run(token)
