@@ -18,7 +18,7 @@ token = os.getenv('DISCORD_BOT_TOKEN')
 async def on_ready():
     await client.change_presence(
         status=discord.Status.idle,
-        activity=discord.Game('Listening to !explains'),
+        activity=discord.Game('Listening to !explains and !faq'),
     )
     print('Bot is ready.')
 
@@ -40,11 +40,26 @@ async def explains(ctx):
 
     # config for local
     # with open('config.json') as f:
-    #     config = Config(**json.load(f))
+    #   config = Config(**json.load(f))
 
     line = str(ctx.message.content)
     search_term = re.sub('!explains', '', line)
     get_msg = await _msg(config, 'explains', search_term)
+    await ctx.send(f'{ctx.message.author.mention}, here you go: {get_msg}')
+
+
+@client.command(name='faq')
+async def faq(ctx):
+    # config for heroku
+    config = Config(**json.loads(os.getenv('CONFIG')))
+
+    # config for local
+    # with open('config.json') as f:
+    #   config = Config(**json.loads(f))
+
+    line = str(ctx.message.content)
+    search_term = re.sub('!faq', '', line)
+    get_msg = await _msg(config, 'faq', search_term)
     await ctx.send(f'{ctx.message.author.mention}, here you go: {get_msg}')
 
 
