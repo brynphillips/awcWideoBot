@@ -45,10 +45,22 @@ async def explains(ctx):
     line = str(ctx.message.content)
     search_term = re.sub('!explains', '', line)
     get_msg = await _msg(config, 'explains', search_term)
-    await ctx.send(f'{ctx.message.author.mention}, here you go: {get_msg}')
+
+    ESCAPE = {
+        ord('\\'): r'\\', ord('_'): r'\_',
+        ord('['): r'\[', ord(']'): r'\]',
+    }
+
+    def video_title(s: str) -> str:
+        return s.strip().translate(ESCAPE)
+
+    await ctx.send(
+        f'{ctx.message.author.mention}, '
+        f'here you go: {video_title(get_msg)}',
+    )
 
 
-@client.command(name='faq')
+@ client.command(name='faq')
 async def faq(ctx):
     # config for heroku
     config = Config(**json.loads(os.getenv('CONFIG')))
@@ -60,7 +72,19 @@ async def faq(ctx):
     line = str(ctx.message.content)
     search_term = re.sub('!faq', '', line)
     get_msg = await _msg(config, 'faq', search_term)
-    await ctx.send(f'{ctx.message.author.mention}, here you go: {get_msg}')
+
+    ESCAPE = {
+        ord('\\'): r'\\', ord('_'): r'\_',
+        ord('['): r'\[', ord(']'): r'\]',
+    }
+
+    def video_title(s: str) -> str:
+        return s.strip().translate(ESCAPE)
+
+    await ctx.send(
+        f'{ctx.message.author.mention}, '
+        f'here you go: {video_title(get_msg)}',
+    )
 
 
 client.run(token)
