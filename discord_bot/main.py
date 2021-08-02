@@ -87,4 +87,30 @@ async def faq(ctx):
     )
 
 
+@ client.command(name='puzzles')
+async def puzzles(ctx):
+    # config for heroku
+    config = Config(**json.loads(os.getenv('CONFIG')))
+
+    # config for local
+    # with open('config.json') as f:
+    #   config = Config(**json.loads(f))
+
+    line = str(ctx.message.content)
+    search_term = re.sub('!puzzles', '', line)
+    get_msg = await _msg(config, 'puzzles', search_term)
+
+    ESCAPE = {
+        ord('\\'): r'\\', ord('_'): r'\_',
+        ord('['): r'\[', ord(']'): r'\]',
+    }
+
+    def video_title(s: str) -> str:
+        return s.strip().translate(ESCAPE)
+
+    await ctx.send(
+        f'{ctx.message.author.mention}, '
+        f'here you go: {video_title(get_msg)}',
+    )
+
 client.run(token)
