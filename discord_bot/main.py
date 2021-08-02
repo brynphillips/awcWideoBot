@@ -18,7 +18,7 @@ token = os.getenv('DISCORD_BOT_TOKEN')
 async def on_ready():
     await client.change_presence(
         status=discord.Status.idle,
-        activity=discord.Game('Listening to !explains and !faq'),
+        activity=discord.Game('Listening to !explains, !faq, and !puzzles'),
     )
     print('Bot is ready.')
 
