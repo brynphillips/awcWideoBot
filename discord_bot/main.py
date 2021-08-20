@@ -105,12 +105,14 @@ async def puzzles(ctx):
         ord('['): r'\[', ord(']'): r'\]',
     }
 
-    def video_title(s: str) -> str:
+    def vid_link(s: str) -> str:
         return s.strip().translate(ESCAPE)
+
+    link1, link2 = vid_link(get_msg).split('list')
 
     await ctx.send(
         f'{ctx.message.author.mention}, '
-        f'here you go: {video_title(get_msg)}',
+        f'here you go: {link1}list{link2}',
     )
 
 client.run(token)
