@@ -76,7 +76,6 @@ async def faq(ctx):
     ESCAPE = {
         ord('\\'): r'\\', ord('_'): r'\_',
         ord('['): r'\[', ord(']'): r'\]',
-        ord('/'): r'\/',
     }
 
     def video_title(s: str) -> str:
