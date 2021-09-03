@@ -126,7 +126,7 @@ async def puzzles(ctx):
 @client.command(name='udp')
 async def udp(ctx):
     await ctx.send(
-        'udp your questions,'
+        '"udp your questions,'
         ' don\'t tcp your questions" - marsha_socks',
     )
 
