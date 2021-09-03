@@ -56,7 +56,7 @@ async def explains(ctx):
 
     string = video_title(get_msg)
     index1 = string.find('https')
-    index2 = string.find(' ', index1)
+    index2 = string.find('', index1)
     string = string[:index1] + '<' + string[index1:] + \
         string[:index2] + '>' + string[index2:]
 
