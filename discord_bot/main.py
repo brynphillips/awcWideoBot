@@ -58,7 +58,7 @@ async def explains(ctx):
     index1 = string.find('https')
     index2 = string.find(' ', index1)
     index3 = string.find('https', index2)
-    string2 = string[:index1] + '<' + string[index1:index2] + '>' \
+    string2 = string[:index1] + string[index1:index2] \
         + string[index2:index3] + '<' + string[index3:] + '>'
 
     await ctx.send(
