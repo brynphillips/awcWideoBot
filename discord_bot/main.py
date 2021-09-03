@@ -56,8 +56,8 @@ async def explains(ctx):
 
     string = video_title(get_msg)
     index1 = string.find('https')
-    index2 = string.find('', index1)
-    string2 = string[:index1] + ' <' + string[index1:index2] + '> '
+    index2 = string.find(' ', index1)
+    string2 = string[:index1] + '<' + string[index1:index2] + '>'
 
     await ctx.send(
         f'{ctx.message.author.mention}, '
@@ -125,7 +125,7 @@ async def puzzles(ctx):
 async def udp(ctx):
     await ctx.send(
         'udp your questions,'
-        'don\'t tcp your questions" - marsha_socks',
+        ' don\'t tcp your questions" - marsha_socks',
     )
 
 client.run(token)
