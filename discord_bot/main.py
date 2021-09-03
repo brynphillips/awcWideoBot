@@ -60,9 +60,16 @@ async def explains(ctx):
     string2 = string[:index1] + '<' + string[index1:index2] + '>' \
         + string[index2:]
 
+    index3 = string.find('https', index2)
+    index4 = string.find(' ', index3)
+    string3 = string[:index3] + '<' + string[index3:index4] + '>' \
+        + string[index4:]
+
+    string_final = string2 + ' ' + string3
+
     await ctx.send(
         f'{ctx.message.author.mention}, '
-        f'here you go: {string2}',
+        f'here you go: {string_final}',
     )
 
 
