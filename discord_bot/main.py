@@ -56,11 +56,11 @@ async def explains(ctx):
 
     await ctx.send(
         f'{ctx.message.author.mention}, '
-        f'here you go: {video_title(get_msg)}',
+        f'here you go: <{video_title(get_msg)}>',
     )
 
 
-@ client.command(name='faq')
+@client.command(name='faq')
 async def faq(ctx):
     # config for heroku
     config = Config(**json.loads(os.getenv('CONFIG')))
@@ -83,11 +83,11 @@ async def faq(ctx):
 
     await ctx.send(
         f'{ctx.message.author.mention}, '
-        f'here you go: {video_title(get_msg)}',
+        f'here you go: <{video_title(get_msg)}>',
     )
 
 
-@ client.command(name='puzzles')
+@client.command(name='puzzles')
 async def puzzles(ctx):
     # config for heroku
     config = Config(**json.loads(os.getenv('CONFIG')))
@@ -112,7 +112,15 @@ async def puzzles(ctx):
 
     await ctx.send(
         f'{ctx.message.author.mention}, '
-        f'here you go: {link1}list{link2}',
+        f'here you go: <{link1}list{link2}>',
+    )
+
+
+@client.command(name='udp')
+async def udp(ctx):
+    await ctx.send(
+        'udp your questions,'
+        'don\'t tcp your questions" - marsha_socks',
     )
 
 client.run(token)
