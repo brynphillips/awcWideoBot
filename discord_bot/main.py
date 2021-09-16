@@ -57,9 +57,13 @@ async def explains(ctx):
     string = video_title(get_msg)
     index1 = string.find('https')
     index2 = string.find(' ', index1)
-    index3 = string.find('https', index2)
-    string2 = string[:index1] + string[index1:index2] \
-        + string[index2:index3] + '<' + string[index3:] + '>'
+
+    if string.find('https', index2) != -1:
+        index3 = string.find('https', index2)
+        string2 = string[:index1] + string[index1:index2] \
+            + string[index2:index3] + '<' + string[index3:] + '>'
+    else:
+        string2 = string[:index1] + string[index1:]
 
     await ctx.send(
         f'{ctx.message.author.mention}, '
