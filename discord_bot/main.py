@@ -52,7 +52,8 @@ async def explains(ctx):
     }
 
     def video_title(s: str) -> str:
-        return s.strip().translate(ESCAPE)
+        s2 = s.split('https')
+        return f'{s2[0].translate(ESCAPE)} + "https" + {s2[1]}'
 
     string = video_title(get_msg)
     index1 = string.find('https')
