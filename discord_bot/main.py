@@ -58,6 +58,7 @@ async def explains(ctx):
     string = video_title(get_msg)
     index1 = string.find('https')
     index2 = string.find(' ', index1)
+    index3 = string.find('https', index2)
 
     if string.find('https', index2) != -1:
         index3 = string.find('https', index2)
