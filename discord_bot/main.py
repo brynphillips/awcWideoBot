@@ -55,7 +55,10 @@ async def explains(ctx):
         if not s.find('https'):
             return f'{s}'
         s2 = s.split('https')
-        return f'{s2[0].translate(ESCAPE)}https{s2[1]}https{s2[2]}'
+        if len(s2) == 2:
+            return f'{s2[0].translate(ESCAPE)}https{s2[1]}'
+        else:
+            return f'{s2[0].translate(ESCAPE)}https{s2[1]}https{s2[2]}'
 
     string = video_title(get_msg)
     index1 = string.find('https')
