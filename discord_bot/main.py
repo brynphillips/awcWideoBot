@@ -52,6 +52,8 @@ async def explains(ctx):
     }
 
     def video_title(s: str) -> str:
+        if not s.find('https'):
+            return f'{s}'
         s2 = s.split('https')
         return f'{s2[0].translate(ESCAPE)}https{s2[1]}https{s2[2]}'
 
