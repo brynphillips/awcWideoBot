@@ -35,12 +35,16 @@ async def whoami(ctx):
 
 @client.command(name='explains')
 async def explains(ctx):
-    # config for heroku
-    config = Config(**json.loads(os.getenv('CONFIG')))
 
-    # config for local
-    # with open('config.json') as f:
-    #   config = Config(**json.load(f))
+    # get config (remote or local)
+    if os.getenv('CONFIG') is not None:
+        config = Config(**json.loads(os.getenv('CONFIG')))
+    else:
+        try:
+            with open('config.json') as f:
+                config = Config(**json.load(f))
+        except OSError as err:
+            print(f'OS error: {err}')
 
     line = str(ctx.message.content)
     search_term = re.sub('!explains', '', line)
